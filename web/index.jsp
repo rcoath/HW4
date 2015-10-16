@@ -9,9 +9,12 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>My Movies</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h1>My Movie Database</h1>
+        
+        <a href="read"> View all Movies</a>
+        
     </body>
 </html>
