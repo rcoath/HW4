@@ -13,6 +13,7 @@
     </head>
     
     <% String table = (String) request.getAttribute("table"); %>
+    
     <body>
         <h1>Ryan's Movie List</h1>
         <%= table %>

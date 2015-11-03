@@ -5,7 +5,7 @@
  */
 package controller;
 
-import dbHelpers.ReadQuery;
+import dbHelpers.AddQuery;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -14,13 +14,18 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Movies;
+import static org.apache.catalina.webresources.TomcatURLStreamHandlerFactory.release;
 
 /**
  *
- * @author Ryan**/
-
-@WebServlet(name = "Read", urlPatterns = {"/read"})
-public class Read extends HttpServlet {
+ * @author Ryan
+ */
+@WebServlet(name = "AddServlet", urlPatterns = {"/addPokemon"})
+public class AddServlet extends HttpServlet {
+    private String lead;
+    private String release;
+    private String director;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,10 +44,10 @@ public class Read extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet Read</title>");            
+            out.println("<title>Servlet AddServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet Read at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet AddServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -60,7 +65,7 @@ public class Read extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+            
             // Pass execution on to doPost
                 doPost(request, response);
     }
@@ -76,18 +81,33 @@ public class Read extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-                // Create a ReadQuery helper object
-                ReadQuery rq = new ReadQuery();
-                // Get the HTML table from the ReadQuery
-                rq.doRead();
-                String table = rq.getHTMLTable();
-                // Pass execution control to read.jsp along with the table
-                request.setAttribute("table", table);
-                String url = "/read.jsp";
-                
-                RequestDispatcher dispatcher = request.getRequestDispatcher(url);
-                dispatcher.forward(request, response);
+       
+            // get the data
+            String movieID = request.getParameter("movieID");
+            String movieName = request.getParameter("movieName");
+            String type = request.getParameter("releaseDate");
+            String species = request.getParameter("Lead");
+            String region = request.getParameter("Director");
+            
+            // set up a pokemon object
+            Movies movie = new Movies();
+            movie.setMovieID(movieID);
+            movie.setMovieName(movieName);
+            movie.setReleaseDate(release);
+            movie.setLead(lead);
+            movie.setDirector(director);
+            
+            // set up an addQuery object
+            AddQuery aq = new AddQuery();
+            
+            // pass the friend to addQuery to add to the database
+            aq.doAdd(movie);
+            
+            // pass execution control to the ReadServlet
+            String url = "/read";
+            
+            RequestDispatcher dispatcher = request.getRequestDispatcher(url);
+            dispatcher.forward (request, response);
     }
 
     /**

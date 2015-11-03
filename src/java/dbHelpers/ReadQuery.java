@@ -52,7 +52,7 @@ public class ReadQuery {
    public void doRead(){
        
         try {
-            String query = "Select * from Movies";
+            String query = "Select * from movies";
             
             PreparedStatement ps = conn.prepareStatement(query);
             this.results = ps.executeQuery();
@@ -71,33 +71,33 @@ public class ReadQuery {
         try {
             while(this.results.next()){
                 
-                Movies movies = new Movies();
-                movies.setMovieID(this.results.getInt("movieID"));
-                movies.setMovieName(this.results.getString("movieName"));
-                movies.setReleaseDate(this.results.getInt("releaseDate"));
-                movies.setLead(this.results.getString("lead"));
-                movies.setDirector(this.results.getString("director"));
+                Movies movie = new Movies();
+                movie.setMovieID(this.results.getInt("movieID"));
+                movie.setMovieName(this.results.getString("movieName"));
+                movie.setReleaseDate(this.results.getString("releaseDate"));
+                movie.setLead(this.results.getString("lead"));
+                movie.setDirector(this.results.getString("director"));
                 
                 
                 table += "<tr>";
                 table += "<td>";
-                table += movies.getMovieID();
+                table += movie.getMovieID();
                 table += "</td>";
                 
                 table += "<td>";
-                table += movies.getMovieName();
+                table += movie.getMovieName();
                 table += "</td>";
                 
                 table += "<td>";
-                table += movies.getReleaseDate();
+                table += movie.getReleaseDate();
                 table += "</td>";
                 
                 table += "<td>";
-                table += movies.getLead();
+                table += movie.getLead();
                 table += "</td>";
 
                 table += "<td>";
-                table += movies.getDirector();
+                table += movie.getDirector();
                 table += "</td>";
                 table += "</tr>";
                 

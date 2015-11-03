@@ -69,6 +69,18 @@ public class Movies {
     public String toString() {
         return "Movies{" + "movieID=" + movieID + ", movieName=" + movieName + ", releaseDate=" + releaseDate + ", lead=" + lead + ", director=" + director + '}';
     }
+
+    public int getmovieName() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public String getmovieID() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void setMovieID(String movieID) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
     
 }

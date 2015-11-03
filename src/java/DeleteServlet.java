@@ -3,9 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controller;
 
-import dbHelpers.ReadQuery;
+import dbHelpers.DeleteQuery;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -17,10 +16,10 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author Ryan**/
-
-@WebServlet(name = "Read", urlPatterns = {"/read"})
-public class Read extends HttpServlet {
+ * @author Ryan
+ */
+@WebServlet(urlPatterns = {"/delete"})
+public class DeleteServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,10 +38,10 @@ public class Read extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet Read</title>");            
+            out.println("<title>Servlet DeleteServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet Read at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet DeleteServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -60,9 +59,10 @@ public class Read extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+            
             // Pass execution on to doPost
                 doPost(request, response);
+        
     }
 
     /**
@@ -76,18 +76,21 @@ public class Read extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-                // Create a ReadQuery helper object
-                ReadQuery rq = new ReadQuery();
-                // Get the HTML table from the ReadQuery
-                rq.doRead();
-                String table = rq.getHTMLTable();
-                // Pass execution control to read.jsp along with the table
-                request.setAttribute("table", table);
-                String url = "/read.jsp";
-                
-                RequestDispatcher dispatcher = request.getRequestDispatcher(url);
-                dispatcher.forward(request, response);
+    
+            // get the pokemonID
+            int pokemonID = Integer.parseInt(request.getParameter("pokemonID"));
+           
+            // create a deleteQuery object
+            DeleteQuery dq = new DeleteQuery();
+            
+            // user deleteQuery to delete the object
+            dq.doDelete(pokemonID);
+            
+            // pass execution on to the ReadServlet
+            String url = "/read";
+            
+            RequestDispatcher dispatcher = request.getRequestDispatcher(url);
+            dispatcher.forward (request, response);
     }
 
     /**

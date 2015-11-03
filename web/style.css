@@ -1,0 +1,49 @@
+html{
+    background-color: white;
+}
+
+body{
+    margin: auto;
+    width: 40%;
+    
+}
+
+table{
+    background: white;
+    border: 4px solid white;
+    margin: 0px;
+}
+    
+th{
+    margin: 0px;
+    background-color: white;
+    color: blue;  
+ }
+    
+
+tr{
+    padding: 0px;
+    background-color: aquamarine;
+    color: gold;
+}
+
+label{
+    display: inline-block;
+    float: left;
+    clear: left;
+    width: 400px;
+    text-align: right;
+    color: white;
+}
+
+
+form{
+    background-color: blanchedalmond;
+    
+}
+
+
+div{
+    text-align: center;
+    
+}
