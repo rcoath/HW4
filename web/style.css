@@ -2,11 +2,22 @@ html{
     background-color: white;
 }
 
-body{
+
+body {
     margin: auto;
     width: 40%;
+    color: white;
+    background-color: white;
+    Font-size:14
     
 }
+
+h1 {
+        color: black;
+        text-align: left;
+        font-style:italic; font-weight:bold;
+}
+
 
 table{
     background: white;
@@ -24,7 +35,7 @@ th{
 tr{
     padding: 0px;
     background-color: aquamarine;
-    color: gold;
+    color: black;
 }
 
 label{
@@ -38,7 +49,7 @@ label{
 
 
 form{
-    background-color: blanchedalmond;
+    background-color: cadetblue;
     
 }
 
